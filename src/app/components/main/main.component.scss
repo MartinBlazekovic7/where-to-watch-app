@@ -1,0 +1,95 @@
+@import "../../../styles.scss";
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: $background;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  h1 {
+    font-family: "McLaren", cursive;
+    position: absolute;
+    color: $window-background;
+    top: 0;
+    bottom: 0;
+    margin: 24px 0;
+    user-select: none;
+  }
+}
+.container {
+  margin-top: 92px;
+  width: 100%;
+  min-height: 92px;
+  background-color: $window-background;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transition: 0.2s ease-out;
+}
+.controls {
+  width: 90%;
+  margin: 24px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  color: $font;
+  span {
+    user-select: none;
+    cursor: pointer;
+    font-size: 48px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      color: $background;
+    }
+  }
+  select {
+    height: 48px;
+    width: 20%;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-left: 1px solid $font;
+    &:focus {
+      outline: none;
+    }
+  }
+  .country-select {
+    width: 20%;
+  }
+  button {
+    height: 48px;
+    width: 5%;
+  }
+}
+.movie-input {
+  width: 55%;
+  height: 48px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  transition: 0.2s ease-in-out;
+  &:focus {
+    outline: none;
+    font-size: 1.75rem;
+  }
+}
+.item-window {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: $window-background;
+  z-index: 1;
+}
