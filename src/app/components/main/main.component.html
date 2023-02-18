@@ -8,15 +8,17 @@
         maxlength="40"
         placeholder="Upiši naziv"
       />
-      <button class="btn btn-primary" (click)="toggleItemDialog = true">
-        {{ chosenItem.name }}
-      </button>
-      <button class="btn btn-primary" (click)="toggleCountryDialog = true">
-        <img
-          src="../../../assets/images/{{ chosenCountry.locale }}.webp"
-          alt=""
-        />
-      </button>
+      <div class="buttons">
+        <button class="btn btn-primary" (click)="toggleItemDialog = true">
+          {{ chosenItem.name?.toUpperCase() }}
+        </button>
+        <button class="btn btn-primary" (click)="toggleCountryDialog = true">
+          <img
+            src="../../../assets/images/{{ chosenCountry.locale }}.webp"
+            alt="country-flag"
+          />
+        </button>
+      </div>
       <span class="material-symbols-outlined"> search </span>
     </div>
   </div>
@@ -24,17 +26,27 @@
 
 <div *ngIf="toggleItemDialog" class="item-window">
   <div [@inOutAnimation] class="window">
-    <div class="item" *ngFor="let item of items" (click)="changeItem(item)">
+    <div
+      *ngFor="let item of items"
+      (click)="changeItem(item)"
+      [ngClass]="item === chosenItem ? 'item chosen' : 'item'"
+      [@inOutAnimation]
+    >
       {{ item.name?.toUpperCase() }}
     </div>
   </div>
 </div>
 <div *ngIf="toggleCountryDialog" class="item-window">
-  <div [@inOutAnimation] class="window country">
+  <div
+    [@inOutAnimationBigger]
+    class="window"
+    style="height: 600px; width: 800px"
+  >
     <div
-      class="item"
       *ngFor="let country of countries"
       (click)="changeCountry(country)"
+      [ngClass]="country === chosenCountry ? 'item chosen' : 'item'"
+      [@inOutAnimation]
     >
       {{ country.name?.toUpperCase() }}
     </div>
