@@ -68,15 +68,28 @@ export class MainComponent implements OnInit {
 
   searchResults: SearchResults[] = [];
   searching = false;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('chosenItem')) {
+      this.chosenItem = JSON.parse(localStorage.getItem('chosenItem') || '{}');
+      console.log(this.chosenItem);
+    } else this.chosenItem = this.items[0];
+
+    if (localStorage.getItem('chosenCountry'))
+      this.chosenCountry = JSON.parse(
+        localStorage.getItem('chosenCountry') || '{}'
+      );
+    else this.chosenCountry = this.countries[0];
+  }
 
   changeItem(item: Item) {
     this.chosenItem = item;
     this.toggleItemDialog = false;
+    localStorage.setItem('chosenItem', JSON.stringify(this.chosenItem));
   }
   changeCountry(country: Country) {
     this.chosenCountry = country;
     this.toggleCountryDialog = false;
+    localStorage.setItem('chosenCountry', JSON.stringify(this.chosenCountry));
   }
 
   searchMovies() {
