@@ -11,7 +11,9 @@ import { Observable } from 'rxjs';
 export class DataService {
   API_KEY =
     '?api_key=1bdf07a878e60c35ec4b72268c4a797e&language=en-US&page=1&include_adult=false&query=';
-  SEARCH_URL = 'https://api.themoviedb.org/3/search/';
+  API_URL = 'https://api.themoviedb.org/3/';
+  PROVIDERS_URL =
+    'https://api.themoviedb.org/3/movie/27205/watch/providers?api_key=1bdf07a878e60c35ec4b72268c4a797e&language=en-US';
 
   constructor(private http: HttpClient) {}
 
@@ -21,7 +23,7 @@ export class DataService {
     country: Country
   ): Observable<SearchResponse> {
     return this.http.get<SearchResponse>(
-      this.SEARCH_URL + item.parameter + this.API_KEY + query
+      this.API_URL + 'search/' + item.parameter + this.API_KEY + query
     );
   }
 }
