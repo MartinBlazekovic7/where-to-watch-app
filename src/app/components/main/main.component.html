@@ -6,7 +6,7 @@
         type="text"
         class="movie-input"
         maxlength="40"
-        placeholder="Upiši naziv"
+        placeholder="Upiši naziv filma ili serije"
         [(ngModel)]="userInput"
       />
       <div class="buttons">
@@ -24,12 +24,41 @@
         search
       </span>
     </div>
-    <div class="content">
+    <div class="content" *ngIf="searching">
+      <div class="tagline">
+        <p (click)="clearSearch()">Izbriši</p>
+      </div>
       <div *ngFor="let item of searchResults" class="result-item">
-        <ng-container *ngIf="item.title; else name">{{
-          item.title
-        }}</ng-container>
-        <ng-template #name>{{ item.name }}</ng-template>
+        <img
+          *ngIf="item.poster_path"
+          src="https://image.tmdb.org/t/p/original{{ item.poster_path }}"
+          alt="itemPoster"
+        />
+        <img
+          *ngIf="!item.poster_path"
+          src="../../../assets/images/posterPlaceholder.jpg"
+          alt="itemPoster"
+        />
+        <div>
+          <h2>
+            {{ item.title ? item.title : item.name }}
+          </h2>
+          <p>
+            <span class="material-symbols-outlined"> event </span>
+            <strong>
+              {{
+                item.first_air_date
+                  ? formatDate(item?.first_air_date!)
+                  : formatDate(item?.release_date!)
+              }}</strong
+            >
+          </p>
+          <p>
+            <span class="material-symbols-outlined"> star </span>
+            <strong>{{ item.vote_average }}</strong>
+          </p>
+          <p>{{ item.overview }}</p>
+        </div>
       </div>
     </div>
   </div>

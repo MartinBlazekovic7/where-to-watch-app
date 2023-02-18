@@ -6,6 +6,9 @@ export class SearchResults {
   backdrop_path?: String;
   title?: String;
   name?: String;
+  release_date?: string;
+  first_air_date?: string;
+  vote_average?: string;
 }
 
 export class SearchResponse {

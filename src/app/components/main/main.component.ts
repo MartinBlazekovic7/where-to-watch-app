@@ -67,6 +67,7 @@ export class MainComponent implements OnInit {
   userInput = '';
 
   searchResults: SearchResults[] = [];
+  searching = false;
   ngOnInit(): void {}
 
   changeItem(item: Item) {
@@ -79,12 +80,21 @@ export class MainComponent implements OnInit {
   }
 
   searchMovies() {
-    console.log(this.userInput, this.chosenItem, this.chosenCountry);
+    if (!this.userInput) return;
+    this.searching = true;
     this.dataService
       .search(this.userInput, this.chosenItem, this.chosenCountry)
       .subscribe((response) => {
         this.searchResults = response.results!!;
-        console.log(this.searchResults);
       });
+  }
+  clearSearch() {
+    this.searching = false;
+    this.userInput = '';
+    this.searchResults = [];
+  }
+  formatDate(date: string) {
+    let arr = date.split('-');
+    return arr[2] + '.' + arr[1] + '.' + arr[0];
   }
 }

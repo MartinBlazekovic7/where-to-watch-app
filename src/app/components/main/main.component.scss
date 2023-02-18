@@ -2,7 +2,7 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   background-color: $background;
@@ -10,7 +10,7 @@ body {
   align-items: center;
   flex-direction: column;
   h1 {
-    font-family: "McLaren", cursive;
+    font-family: "Graduate", cursive;
     position: absolute;
     color: $window-background;
     top: 0;
@@ -20,6 +20,7 @@ body {
   }
 }
 .container {
+  font-family: "Offside", cursive;
   z-index: 0;
   margin-top: 92px;
   width: 100%;
@@ -143,4 +144,63 @@ body {
 }
 .chosen {
   border: 3px solid $background;
+}
+.content {
+  width: 95%;
+  margin: 0 auto 24px;
+  border-top: 1px solid $font;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .result-item {
+    width: 100%;
+    margin-bottom: 24px;
+    color: $font;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.01);
+    }
+    img {
+      width: 200px;
+      height: 300px;
+      border-radius: 16px 0 0 16px;
+    }
+    div {
+      margin-left: 2%;
+      margin-top: 12px;
+      width: 78%;
+      h2 {
+        font-family: "Graduate", cursive;
+      }
+      p {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 4px 0;
+      }
+    }
+  }
+}
+.tagline {
+  width: 100%;
+  color: $font;
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  p {
+    cursor: pointer;
+    &:hover {
+      color: $background;
+      text-decoration: underline;
+    }
+  }
 }
