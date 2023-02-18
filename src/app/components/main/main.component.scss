@@ -20,6 +20,7 @@ body {
   }
 }
 .container {
+  z-index: 0;
   margin-top: 92px;
   width: 100%;
   min-height: 92px;
@@ -40,6 +41,8 @@ body {
   align-items: center;
   color: $font;
   span {
+    margin-left: 2.5%;
+    width: 5%;
     user-select: none;
     cursor: pointer;
     font-size: 48px;
@@ -49,28 +52,14 @@ body {
       color: $background;
     }
   }
-  select {
-    height: 48px;
-    width: 20%;
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    border-left: 1px solid $font;
-    &:focus {
-      outline: none;
-    }
-  }
-  .country-select {
-    width: 20%;
-  }
   button {
     height: 48px;
-    width: 5%;
+    width: 15%;
+    margin-left: 2.5%;
   }
 }
 .movie-input {
-  width: 55%;
+  width: 60%;
   height: 48px;
   background: transparent;
   border: none;
@@ -82,14 +71,48 @@ body {
   }
 }
 .item-window {
-  width: 400px;
-  height: 300px;
   position: absolute;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  margin: auto;
-  background-color: $window-background;
-  z-index: 1;
+  .window {
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: $window-background;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    .item {
+      height: 100px;
+      width: 90%;
+      margin: 6px auto;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      color: $font;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+.country {
+  height: 600px;
 }

@@ -8,14 +8,35 @@
         maxlength="40"
         placeholder="Upiši naziv"
       />
-      <select name="item-select" id="item-select">
-        <option value="movies">Filmovi</option>
-        <option value="shows">Serije</option>
-      </select>
-      <div class="country-select"></div>
+      <button class="btn btn-primary" (click)="toggleItemDialog = true">
+        {{ chosenItem.name }}
+      </button>
+      <button class="btn btn-primary" (click)="toggleCountryDialog = true">
+        <img
+          src="../../../assets/images/{{ chosenCountry.locale }}.webp"
+          alt=""
+        />
+      </button>
       <span class="material-symbols-outlined"> search </span>
     </div>
   </div>
 </body>
 
-<div class="item-window"></div>
+<div *ngIf="toggleItemDialog" class="item-window">
+  <div [@inOutAnimation] class="window">
+    <div class="item" *ngFor="let item of items" (click)="changeItem(item)">
+      {{ item.name?.toUpperCase() }}
+    </div>
+  </div>
+</div>
+<div *ngIf="toggleCountryDialog" class="item-window">
+  <div [@inOutAnimation] class="window country">
+    <div
+      class="item"
+      *ngFor="let country of countries"
+      (click)="changeCountry(country)"
+    >
+      {{ country.name?.toUpperCase() }}
+    </div>
+  </div>
+</div>
