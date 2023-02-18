@@ -1,3 +1,5 @@
+import { SearchResults } from './../../models/search.model';
+import { DataService } from './../../services/data.service';
 import { Country } from './../../models/country.model';
 import {
   trigger,
@@ -41,8 +43,10 @@ import { Item } from 'src/app/models/item.model';
   ],
 })
 export class MainComponent implements OnInit {
+  constructor(private dataService: DataService) {}
+
   items: Item[] = [
-    { name: 'Filmovi', parameter: 'movies' },
+    { name: 'Filmovi', parameter: 'movie' },
     { name: 'Serije', parameter: 'tv' },
   ];
   chosenItem: Item = this.items[0];
@@ -59,6 +63,10 @@ export class MainComponent implements OnInit {
 
   toggleItemDialog = false;
   toggleCountryDialog = false;
+
+  userInput = '';
+
+  searchResults: SearchResults[] = [];
   ngOnInit(): void {}
 
   changeItem(item: Item) {
@@ -68,5 +76,15 @@ export class MainComponent implements OnInit {
   changeCountry(country: Country) {
     this.chosenCountry = country;
     this.toggleCountryDialog = false;
+  }
+
+  searchMovies() {
+    console.log(this.userInput, this.chosenItem, this.chosenCountry);
+    this.dataService
+      .search(this.userInput, this.chosenItem, this.chosenCountry)
+      .subscribe((response) => {
+        this.searchResults = response.results!!;
+        console.log(this.searchResults);
+      });
   }
 }

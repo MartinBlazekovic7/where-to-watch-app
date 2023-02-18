@@ -7,6 +7,7 @@
         class="movie-input"
         maxlength="40"
         placeholder="Upiši naziv"
+        [(ngModel)]="userInput"
       />
       <div class="buttons">
         <button class="btn btn-primary" (click)="toggleItemDialog = true">
@@ -19,7 +20,17 @@
           />
         </button>
       </div>
-      <span class="material-symbols-outlined"> search </span>
+      <span class="material-symbols-outlined" (click)="searchMovies()">
+        search
+      </span>
+    </div>
+    <div class="content">
+      <div *ngFor="let item of searchResults" class="result-item">
+        <ng-container *ngIf="item.title; else name">{{
+          item.title
+        }}</ng-container>
+        <ng-template #name>{{ item.name }}</ng-template>
+      </div>
     </div>
   </div>
 </body>

@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
 import { NotFoundComponent } from './components/other/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, MainComponent, NotFoundComponent],
@@ -15,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

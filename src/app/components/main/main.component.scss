@@ -46,7 +46,7 @@ body {
     user-select: none;
     cursor: pointer;
     font-size: 48px;
-    font-weight: bold;
+    font-weight: bolder;
     transition: 0.3s ease-in-out;
     display: flex;
     justify-content: flex-end;
@@ -77,16 +77,18 @@ body {
       border: 1px solid $background;
     }
     img {
-      width: 60px;
+      width: 50px;
       border-radius: 10px;
     }
   }
 }
 .movie-input {
-  width: 60%;
+  width: 58%;
+  margin-right: 2%;
   height: 48px;
   background: transparent;
   border: none;
+  border-right: 3px solid $font;
   font-size: 1.5rem;
   transition: 0.2s ease-in-out;
   &:focus {
