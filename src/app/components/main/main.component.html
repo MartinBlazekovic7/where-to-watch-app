@@ -1,7 +1,10 @@
 <body>
-  <h1>DI MOGU GLEDAT?</h1>
+  <h1>Where Can I Watch?</h1>
   <div class="container">
     <div class="controls">
+      <span class="material-symbols-outlined" (click)="searchMovies()">
+        search
+      </span>
       <input
         type="text"
         class="movie-input"
@@ -10,25 +13,24 @@
         [(ngModel)]="userInput"
       />
       <div class="buttons">
-        <button class="btn btn-primary" (click)="toggleItemDialog = true">
-          {{ chosenItem.name?.toUpperCase() }}
-        </button>
-        <button class="btn btn-primary" (click)="toggleCountryDialog = true">
-          <img
-            src="../../../assets/images/{{ chosenCountry.locale }}.webp"
-            alt="country-flag"
-          />
-        </button>
+        <button (click)="searchMovies()">SEARCH</button>
+        <span
+          class="material-symbols-outlined"
+          (click)="toggleCountryDialog = true"
+        >
+          settings
+        </span>
       </div>
-      <span class="material-symbols-outlined" (click)="searchMovies()">
-        search
-      </span>
     </div>
     <div class="content" *ngIf="searching">
       <div class="tagline">
         <p (click)="clearSearch()">Izbriši</p>
       </div>
-      <div *ngFor="let item of searchResults" class="result-item">
+      <div
+        *ngFor="let item of searchResults"
+        class="result-item"
+        (click)="findProviders(item)"
+      >
         <img
           *ngIf="item.poster_path"
           src="https://image.tmdb.org/t/p/original{{ item.poster_path }}"
@@ -64,18 +66,6 @@
   </div>
 </body>
 
-<div *ngIf="toggleItemDialog" class="item-window">
-  <div [@inOutAnimation] class="window">
-    <div
-      *ngFor="let item of items"
-      (click)="changeItem(item)"
-      [ngClass]="item === chosenItem ? 'item chosen' : 'item'"
-      [@inOutAnimation]
-    >
-      {{ item.name?.toUpperCase() }}
-    </div>
-  </div>
-</div>
 <div *ngIf="toggleCountryDialog" class="item-window">
   <div
     [@inOutAnimationBigger]

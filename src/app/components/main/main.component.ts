@@ -15,6 +15,7 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { faTv } from '@fortawesome/free-solid-svg-icons';
 import { Item } from 'src/app/models/item.model';
+import { Provider } from 'src/app/models/provider.model';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -45,11 +46,6 @@ import { Item } from 'src/app/models/item.model';
 export class MainComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
-  items: Item[] = [
-    { name: 'Filmovi', parameter: 'movie' },
-    { name: 'Serije', parameter: 'tv' },
-  ];
-  chosenItem: Item = this.items[0];
   countries: Country[] = [
     { name: 'Hrvatska', locale: 'hr' },
     { name: 'BiH', locale: 'ba' },
@@ -68,12 +64,9 @@ export class MainComponent implements OnInit {
 
   searchResults: SearchResults[] = [];
   searching = false;
-  ngOnInit(): void {
-    if (localStorage.getItem('chosenItem')) {
-      this.chosenItem = JSON.parse(localStorage.getItem('chosenItem') || '{}');
-      console.log(this.chosenItem);
-    } else this.chosenItem = this.items[0];
 
+  movieProviders: Provider = {};
+  ngOnInit(): void {
     if (localStorage.getItem('chosenCountry'))
       this.chosenCountry = JSON.parse(
         localStorage.getItem('chosenCountry') || '{}'
@@ -81,11 +74,6 @@ export class MainComponent implements OnInit {
     else this.chosenCountry = this.countries[0];
   }
 
-  changeItem(item: Item) {
-    this.chosenItem = item;
-    this.toggleItemDialog = false;
-    localStorage.setItem('chosenItem', JSON.stringify(this.chosenItem));
-  }
   changeCountry(country: Country) {
     this.chosenCountry = country;
     this.toggleCountryDialog = false;
@@ -96,9 +84,12 @@ export class MainComponent implements OnInit {
     if (!this.userInput) return;
     this.searching = true;
     this.dataService
-      .search(this.userInput, this.chosenItem, this.chosenCountry)
+      .search(this.userInput, this.chosenCountry)
       .subscribe((response) => {
-        this.searchResults = response.results!!;
+        this.searchResults = response.results!!.filter(
+          (result) =>
+            result.media_type === 'movie' || result.media_type === 'tv'
+        );
       });
   }
   clearSearch() {
@@ -106,6 +97,15 @@ export class MainComponent implements OnInit {
     this.userInput = '';
     this.searchResults = [];
   }
+
+  findProviders(item: SearchResults) {
+    this.dataService
+      .getProviders(item, item.media_type, this.chosenCountry.locale)
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
+
   formatDate(date: string) {
     let arr = date.split('-');
     return arr[2] + '.' + arr[1] + '.' + arr[0];

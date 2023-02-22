@@ -9,6 +9,7 @@ export class SearchResults {
   release_date?: string;
   first_air_date?: string;
   vote_average?: string;
+  media_type?: string;
 }
 
 export class SearchResponse {
