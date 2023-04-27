@@ -1,30 +1,37 @@
 <body>
   <h1>Where Can I Watch?</h1>
   <div class="container">
-    <div class="controls">
-      <span class="material-symbols-outlined" (click)="searchMovies()">
-        search
-      </span>
-      <input
-        type="text"
-        class="movie-input"
-        maxlength="40"
-        placeholder="Upiši naziv filma ili serije"
-        [(ngModel)]="userInput"
-      />
-      <div class="buttons">
-        <button (click)="searchMovies()">SEARCH</button>
-        <span
-          class="material-symbols-outlined"
-          (click)="toggleCountryDialog = true"
-        >
-          settings
-        </span>
+    <div class="row">
+      <div class="col-lg-8 col-12">
+        <div class="inputs">
+          <span class="material-symbols-outlined" (click)="searchMovies()">
+            search
+          </span>
+          <input
+            type="text"
+            class="movie-input"
+            maxlength="40"
+            placeholder="Name of movie or TV show"
+            [(ngModel)]="userInput"
+          />
+        </div>
+      </div>
+      <div class="col-lg-4 col-12">
+        <div class="buttons">
+          <span
+            class="material-symbols-outlined"
+            (click)="toggleCountryDialog = true"
+          >
+            settings
+          </span>
+          <button (click)="searchMovies()">SEARCH</button>
+        </div>
       </div>
     </div>
+
     <div class="content" *ngIf="searching">
       <div class="tagline">
-        <p (click)="clearSearch()">Izbriši</p>
+        <p (click)="clearSearch()">Clear</p>
       </div>
       <div
         *ngFor="let item of searchResults"
