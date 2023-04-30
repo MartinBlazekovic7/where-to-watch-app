@@ -5,14 +5,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
-import { NotFoundComponent } from './components/other/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, NotFoundComponent, SearchPipe],
+  declarations: [AppComponent, MainComponent, SearchPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
