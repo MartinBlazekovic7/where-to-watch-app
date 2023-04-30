@@ -151,9 +151,19 @@ button {
         outline: none;
       }
     }
+    .country-results {
+      max-height: calc(100vh - 320px);
+      min-height: calc(100vh - 320px);
+      overflow-y: scroll;
+      border-radius: 16px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      padding: 12px;
+    }
     .result {
       cursor: pointer;
       transition: 0.2s;
+      padding: 4px 0;
+      border-bottom: 1px solid white;
       &:hover {
         transform: scale(1.01);
       }
@@ -281,6 +291,14 @@ button {
         width: 96%;
         max-height: 100%;
         padding: 0 2%;
+      }
+    }
+  }
+  .item-window {
+    .window {
+      .country-results {
+        max-height: calc(100vh - 220px);
+        min-height: calc(100vh - 220px);
       }
     }
   }

@@ -20,7 +20,7 @@ export class SearchPipe implements PipeTransform {
         return JSON.stringify(item).toLowerCase().includes(query);
       });
     } else {
-      return [];
+      return countries;
     }
   }
 }
