@@ -1,17 +1,6 @@
 import { SearchResults } from './../../models/search.model';
 import { DataService } from './../../services/data.service';
 import { Country } from './../../models/country.model';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-  group,
-  query,
-  stagger,
-  keyframes,
-} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Provider, ProviderList } from 'src/app/models/provider.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -51,6 +40,10 @@ export class MainComponent implements OnInit {
       this.chosenCountry = JSON.parse(
         localStorage.getItem('chosenCountry') || '{}'
       );
+    else {
+      this.chosenCountry = { iso_3166_1: 'HR', english_name: 'CROATIA' };
+      localStorage.setItem('chosenCountry', JSON.stringify(this.chosenCountry));
+    }
     this.route.queryParams.subscribe((params) => {
       const searchParam = params['search'];
       if (searchParam) {
@@ -93,6 +86,7 @@ export class MainComponent implements OnInit {
   }
 
   formatDate(date: string) {
+    if (!date) return 'Date of release not found';
     let arr = date.split('-');
     return arr[2] + '.' + arr[1] + '.' + arr[0];
   }

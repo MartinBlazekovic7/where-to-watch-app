@@ -23,7 +23,6 @@ body {
   font-family: "Offside", cursive;
   z-index: 0;
   margin-top: 92px;
-  width: 100%;
   min-height: 92px;
   background-color: $window-background;
   border-radius: 16px;
@@ -208,9 +207,6 @@ button {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 }
-.chosen {
-  border: 3px solid $background;
-}
 .content {
   width: 95%;
   margin: 0 auto 24px;
@@ -241,6 +237,8 @@ button {
       margin-left: 2%;
       margin-top: 12px;
       width: 78%;
+      max-height: 300px;
+      overflow: hidden;
       h2 {
         font-family: "Graduate", cursive;
       }
@@ -267,6 +265,23 @@ button {
     &:hover {
       color: $background;
       text-decoration: underline;
+    }
+  }
+}
+@media only screen and (max-width: 992px) {
+  .content {
+    .result-item {
+      flex-direction: column;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 16px 16px 0 0;
+      }
+      div {
+        width: 96%;
+        max-height: 100%;
+        padding: 0 2%;
+      }
     }
   }
 }
