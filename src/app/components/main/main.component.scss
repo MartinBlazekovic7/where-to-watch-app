@@ -278,6 +278,18 @@ button {
     }
   }
 }
+
+.site-description {
+  position: absolute;
+  color: $window-background;
+  opacity: 0.5;
+  top: 50%;
+  text-align: center;
+  a {
+    text-decoration: underline;
+    color: $window-background;
+  }
+}
 @media only screen and (max-width: 992px) {
   .content {
     .result-item {
@@ -297,8 +309,18 @@ button {
   .item-window {
     .window {
       .country-results {
-        max-height: calc(100vh - 220px);
-        min-height: calc(100vh - 220px);
+        max-height: calc(100vh - 300px);
+        min-height: calc(100vh - 300px);
+      }
+    }
+  }
+}
+@media only screen and (max-width: 678px) {
+  .item-window {
+    .window {
+      .country-results {
+        max-height: calc(100vh - 260px);
+        min-height: calc(100vh - 260px);
       }
     }
   }

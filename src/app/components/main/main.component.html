@@ -74,6 +74,13 @@
       </div>
     </div>
   </div>
+
+  <i *ngIf="!searchResults.length" class="site-description"
+    >This website is made as an extension to
+    <a href="https://www.cinemaholic.vercel.app" target="_blank">Cinemaholic</a>
+    movie and TV database. Check it out if you want to learn about movies and TV
+    shows.
+  </i>
 </body>
 
 <div *ngIf="toggleCountryDialog" [@fadeIn] class="item-window">
