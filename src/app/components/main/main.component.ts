@@ -13,7 +13,7 @@ import {
   keyframes,
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Provider } from 'src/app/models/provider.model';
+import { Provider, ProviderList } from 'src/app/models/provider.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fadeIn, inAnimation } from 'src/app/animations/animations';
 @Component({
@@ -41,7 +41,8 @@ export class MainComponent implements OnInit {
   searchResults: SearchResults[] = [];
   searching = false;
 
-  movieProviders: Provider = {};
+  chosenItem: SearchResults = {};
+  chosenItemProviders: ProviderList = {};
   ngOnInit(): void {
     this.dataService.getCountries().subscribe((response) => {
       this.countries = response.results!!;
@@ -84,7 +85,10 @@ export class MainComponent implements OnInit {
     this.dataService
       .getProviders(item, item.media_type, this.chosenCountry.iso_3166_1)
       .subscribe((response) => {
-        console.log(response);
+        this.chosenItem = item;
+        this.chosenItemProviders = response;
+        console.log(this.chosenItemProviders);
+        this.toggleItemDialog = true;
       });
   }
 

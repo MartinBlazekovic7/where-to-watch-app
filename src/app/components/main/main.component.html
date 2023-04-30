@@ -114,9 +114,88 @@
     <button
       [@inAnimation]
       class="close-btn"
-      (click)="toggleCountryDialog = false"
+      (click)="toggleCountryDialog = false; searchTerm = ''"
     >
       OK
     </button>
+  </div>
+</div>
+
+<div *ngIf="toggleItemDialog" [@fadeIn] class="item-window">
+  <div [@inAnimation] class="window p-0">
+    <div class="container text-center">
+      <div class="row mt-2">
+        <i>Where can I watch?</i>
+        <h2>
+          {{ chosenItem.title ? chosenItem.title : chosenItem.name }}
+        </h2>
+        <i>in {{ chosenCountry.english_name }}</i>
+      </div>
+      <hr />
+      <div
+        *ngIf="
+          !chosenItemProviders.buy &&
+          !chosenItemProviders.flatrate &&
+          !chosenItemProviders.rent
+        "
+        class="row pt-5"
+      >
+        <i>
+          Unfortunately, you cannot watch this title anywhere in the selected
+          region.
+        </i>
+      </div>
+      <div class="row">
+        <div *ngIf="chosenItemProviders.flatrate" class="col">
+          <p>Stream</p>
+        </div>
+        <div *ngIf="chosenItemProviders.buy" class="col"><p>Buy</p></div>
+        <div *ngIf="chosenItemProviders.rent" class="col"><p>Rent</p></div>
+      </div>
+      <div class="row">
+        <div *ngIf="chosenItemProviders.flatrate" class="col">
+          <img
+            class="provider-logo-img"
+            *ngFor="let p of chosenItemProviders.flatrate"
+            src="https://image.tmdb.org/t/p/original{{ p.logo_path }}"
+            alt=""
+          />
+        </div>
+        <div *ngIf="chosenItemProviders.buy" class="col">
+          <img
+            class="provider-logo-img"
+            *ngFor="let p of chosenItemProviders.buy"
+            src="https://image.tmdb.org/t/p/original{{ p.logo_path }}"
+            alt=""
+          />
+        </div>
+        <div *ngIf="chosenItemProviders.rent" class="col">
+          <img
+            class="provider-logo-img"
+            *ngFor="let p of chosenItemProviders.rent"
+            src="https://image.tmdb.org/t/p/original{{ p.logo_path }}"
+            alt=""
+          />
+        </div>
+        <div class="header">
+          <div id="gradient"></div>
+          <img
+            *ngIf="chosenItem.backdrop_path"
+            src="https://image.tmdb.org/t/p/original{{
+              chosenItem.backdrop_path
+            }}"
+            alt="itemPoster"
+            class="backdrop-img"
+          />
+        </div>
+        <button
+          [@inAnimation]
+          class="close-btn"
+          (click)="toggleItemDialog = false"
+        >
+          CLOSE
+        </button>
+      </div>
+    </div>
   </div>
 </div>

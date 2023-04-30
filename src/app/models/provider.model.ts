@@ -9,3 +9,9 @@ export class Provider {
   provider_name?: string;
   display_priority?: string;
 }
+
+export class ProviderList {
+  flatrate?: Provider[];
+  buy?: Provider[];
+  rent?: Provider[];
+}
