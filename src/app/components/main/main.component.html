@@ -1,6 +1,6 @@
 <body>
   <h1>Where Can I Watch?</h1>
-  <div class="container">
+  <div [@inOutAnimation] class="container main-content">
     <div class="row">
       <div class="col-lg-8 col-12">
         <div class="inputs">
@@ -74,18 +74,49 @@
 </body>
 
 <div *ngIf="toggleCountryDialog" class="item-window">
-  <div
-    [@inOutAnimationBigger]
-    class="window"
-    style="height: 600px; width: 800px"
-  >
-    <div
-      *ngFor="let country of countries"
-      (click)="changeCountry(country)"
-      [ngClass]="country === chosenCountry ? 'item chosen' : 'item'"
-      [@inOutAnimation]
-    >
-      {{ country.name?.toUpperCase() }}
+  <div [@inAnimation] class="window">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <p class="text-left">Current region:</p>
+        </div>
+        <div class="col-6">
+          <p style="text-align: right; font-weight: 700">
+            {{ chosenCountry.english_name?.toUpperCase() }}
+          </p>
+        </div>
+      </div>
+      <hr />
+      <input
+        type="text"
+        class="country-input"
+        style="width: 100%"
+        placeholder="Search other regions"
+        [(ngModel)]="searchTerm"
+      />
+      <div class="container country-results">
+        <div
+          class="row"
+          *ngFor="
+            let item of countries
+              | search : 'english_name' : searchTerm
+              | slice : 0 : 5
+          "
+        >
+          <div class="col">
+            <div class="result" (click)="changeChosenCountry(item)">
+              {{ item.english_name }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <button
+      [@inAnimation]
+      class="close-btn"
+      (click)="toggleCountryDialog = false"
+    >
+      OK
+    </button>
   </div>
 </div>

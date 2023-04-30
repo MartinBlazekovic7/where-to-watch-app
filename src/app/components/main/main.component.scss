@@ -19,7 +19,7 @@ body {
     user-select: none;
   }
 }
-.container {
+.main-content {
   font-family: "Offside", cursive;
   z-index: 0;
   margin-top: 92px;
@@ -33,6 +33,7 @@ body {
   transition: 0.2s ease-out;
 }
 span {
+  color: $font;
   user-select: none;
   cursor: pointer;
   font-weight: bolder;
@@ -116,7 +117,7 @@ button {
   }
 }
 .item-window {
-  position: absolute;
+  position: fixed;
   z-index: 1;
   background: rgba(0, 0, 0, 0.25);
   width: 100%;
@@ -126,38 +127,51 @@ button {
   top: 0;
   bottom: 0;
   .window {
-    width: 400px;
-    height: 300px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
+    transition: 0.2s;
+    font-family: "Offside", cursive;
+    position: fixed;
     bottom: 0;
-    margin: auto;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 50%;
+    height: 50%;
     background-color: $window-background;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 18px;
-    padding-top: 48px;
-    padding-bottom: 48px;
-    .item {
-      height: 100px;
-      width: 90%;
-      margin: 6px auto;
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      border-radius: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
+    border-radius: 16px 16px 0 0;
+    padding: 20px;
+    p {
+      font-size: 1.2rem;
+    }
+    .country-input {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      border-bottom: 1px solid $font;
       transition: 0.2s ease-in-out;
-      color: $font;
-      &:hover {
-        transform: scale(1.05);
+      margin: 22px 0;
+      &:focus {
+        outline: none;
       }
     }
+    .country-results {
+    }
+    .result {
+      cursor: pointer;
+      transition: 0.2s;
+      &:hover {
+        transform: scale(1.01);
+      }
+    }
+    @media only screen and (max-width: 678px) {
+      width: 100%;
+      //height: 100%;
+    }
+  }
+
+  .window .close-btn {
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
   }
 }
 .chosen {

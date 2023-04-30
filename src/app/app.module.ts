@@ -9,9 +9,10 @@ import { NotFoundComponent } from './components/other/not-found/not-found.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, NotFoundComponent],
+  declarations: [AppComponent, MainComponent, NotFoundComponent, SearchPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,

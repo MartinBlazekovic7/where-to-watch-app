@@ -1,4 +1,7 @@
 export class Country {
-  name?: string;
-  locale?: string;
+  iso_3166_1?: string;
+  english_name?: string;
+}
+export class CountryResponse {
+  results?: Country[];
 }
