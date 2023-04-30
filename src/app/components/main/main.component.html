@@ -104,7 +104,7 @@
         placeholder="Search other regions"
         [(ngModel)]="searchTerm"
       />
-      <div class="container country-results">
+      <div class="container country-results" id="scrollbar-style">
         <div
           class="row"
           *ngFor="let item of countries | search : 'english_name' : searchTerm"

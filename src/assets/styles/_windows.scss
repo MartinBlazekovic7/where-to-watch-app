@@ -1,0 +1,124 @@
+.item-window {
+  position: fixed;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  color: $font;
+  .window {
+    transition: 0.2s;
+    font-family: "Offside", cursive;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 70%;
+    height: 90%;
+    background-color: $background-light-black;
+    border-radius: 16px 16px 0 0;
+    padding: 20px;
+    p {
+      font-size: 1.2rem;
+    }
+    .country-input {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      color: $font;
+      border-bottom: 1px solid $button-red;
+      transition: 0.2s ease-in-out;
+      margin: 22px 0;
+      &:focus {
+        outline: none;
+      }
+    }
+    .country-results {
+      max-height: calc(100vh - 320px);
+      min-height: calc(100vh - 320px);
+      overflow-y: scroll;
+      border-radius: 16px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      padding: 12px;
+    }
+    .result {
+      cursor: pointer;
+      transition: 0.2s;
+      padding: 4px 0;
+      border-bottom: 1px solid white;
+      &:hover {
+        transform: scale(1.01);
+      }
+    }
+    @media only screen and (max-width: 678px) {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .provider-logo-img {
+    width: 60px;
+    height: 60px;
+    margin: 0 4px;
+  }
+
+  .backdrop-img {
+    width: 100%;
+    height: 100%;
+    object-position: top;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+  }
+  .header {
+    z-index: -1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 16px 16px 0 0;
+    padding-top: 20%;
+  }
+
+  #gradient {
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(228, 237, 245);
+    background: linear-gradient(
+      0deg,
+      rgba(228, 237, 245, 0) 0%,
+      $background-light-black 100%
+    );
+    position: absolute;
+  }
+
+  .window .close-btn {
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .item-window {
+    .window {
+      .country-results {
+        max-height: calc(100vh - 300px);
+        min-height: calc(100vh - 300px);
+      }
+    }
+  }
+}
+@media only screen and (max-width: 678px) {
+  .item-window {
+    .window {
+      .country-results {
+        max-height: calc(100vh - 260px);
+        min-height: calc(100vh - 260px);
+      }
+    }
+  }
+}
