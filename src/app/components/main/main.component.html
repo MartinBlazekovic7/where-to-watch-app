@@ -1,6 +1,6 @@
 <body>
   <h1>Where Can I Watch?</h1>
-  <div [@inOutAnimation] class="container main-content">
+  <div [@fadeIn] class="container main-content">
     <div class="row">
       <div class="col-lg-8 col-12">
         <div class="inputs">
@@ -73,7 +73,7 @@
   </div>
 </body>
 
-<div *ngIf="toggleCountryDialog" class="item-window">
+<div *ngIf="toggleCountryDialog" [@fadeIn] class="item-window">
   <div [@inAnimation] class="window">
     <div class="container">
       <div class="row">

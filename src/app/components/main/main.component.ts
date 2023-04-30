@@ -15,42 +15,12 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { Provider } from 'src/app/models/provider.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { fadeIn, inAnimation } from 'src/app/animations/animations';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations: [
-    trigger('inOutAnimation', [
-      transition(':enter', [
-        style({ height: 0, opacity: 0 }),
-        animate('0.5s ease-out', style({ height: 92, opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ height: 300, opacity: 1 }),
-        animate('0.5s ease-in', style({ height: 0, opacity: 0 })),
-      ]),
-    ]),
-    trigger('inOutAnimationBigger', [
-      transition(':enter', [
-        style({ height: 0, opacity: 0 }),
-        animate('0.5s ease-out', style({ height: 500, opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ height: 300, opacity: 1 }),
-        animate('0.5s ease-in', style({ height: 0, opacity: 0 })),
-      ]),
-    ]),
-    trigger('inAnimation', [
-      transition(':enter', [
-        style({ height: 0, opacity: 0 }),
-        animate('0.5s ease-out', style({ height: 300, opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ height: 300, opacity: 1 }),
-        animate('0.5s ease-in', style({ height: 0, opacity: 0 })),
-      ]),
-    ]),
-  ],
+  animations: [inAnimation, fadeIn],
 })
 export class MainComponent implements OnInit {
   constructor(
@@ -75,7 +45,6 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getCountries().subscribe((response) => {
       this.countries = response.results!!;
-      console.log(this.countries);
     });
     if (localStorage.getItem('chosenCountry'))
       this.chosenCountry = JSON.parse(
@@ -88,12 +57,6 @@ export class MainComponent implements OnInit {
         this.searchMovies();
       }
     });
-  }
-
-  changeCountry(country: Country) {
-    /* this.chosenCountry = country;
-    this.toggleCountryDialog = false;
-    localStorage.setItem('chosenCountry', JSON.stringify(this.chosenCountry)); */
   }
 
   searchMovies() {
