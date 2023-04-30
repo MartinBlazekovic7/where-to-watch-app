@@ -1,11 +1,11 @@
 export class SearchResults {
   id?: number;
-  overview?: String;
+  overview?: string;
   popularity?: number;
-  poster_path?: String;
-  backdrop_path?: String;
-  title?: String;
-  name?: String;
+  poster_path?: string;
+  backdrop_path?: string;
+  title?: string;
+  name?: string;
   release_date?: string;
   first_air_date?: string;
   vote_average?: string;

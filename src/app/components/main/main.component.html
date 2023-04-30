@@ -33,7 +33,7 @@
       <div class="tagline">
         <p (click)="clearSearch()">Clear</p>
       </div>
-      <div *ngIf="!searchResults.length">
+      <div *ngIf="!searchResults!.length">
         <i>No results for your search term.</i>
       </div>
       <div
@@ -67,7 +67,7 @@
           </p>
           <p>
             <span class="material-symbols-outlined"> star </span>
-            <strong>{{ item.vote_average }}</strong>
+            <strong> {{ item.vote_average }}</strong>
           </p>
           <p>{{ item.overview }}</p>
         </div>
@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <i *ngIf="!searchResults.length" class="site-description"
+  <i *ngIf="!searchResults!.length" class="site-description"
     >This website is made as an extension to
     <a href="https://www.cinemaholic.vercel.app" target="_blank">Cinemaholic</a>
     movie and TV database. Check it out if you want to learn about movies and TV
@@ -107,7 +107,7 @@
       <div class="container country-results" id="scrollbar-style">
         <div
           class="row"
-          *ngFor="let item of countries | search : 'english_name' : searchTerm"
+          *ngFor="let item of countries! | search : 'english_name' : searchTerm"
         >
           <div class="col">
             <div class="result" (click)="changeChosenCountry(item)">

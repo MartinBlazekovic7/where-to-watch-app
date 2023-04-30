@@ -2,7 +2,7 @@ import { SearchResults } from './../../models/search.model';
 import { DataService } from './../../services/data.service';
 import { Country } from './../../models/country.model';
 import { Component, OnInit } from '@angular/core';
-import { Provider, ProviderList } from 'src/app/models/provider.model';
+import { ProviderList } from 'src/app/models/provider.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fadeIn, inAnimation } from 'src/app/animations/animations';
 @Component({
@@ -18,23 +18,23 @@ export class MainComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  countries: Country[] = [];
+  countries: Country[] | undefined = [];
   chosenCountry: Country = {};
-  searchTerm: string = '';
+  searchTerm = '';
 
   toggleItemDialog = false;
   toggleCountryDialog = false;
 
   userInput = '';
 
-  searchResults: SearchResults[] = [];
+  searchResults: SearchResults[] | undefined = [];
   searching = false;
 
   chosenItem: SearchResults = {};
   chosenItemProviders: ProviderList = {};
   ngOnInit(): void {
     this.dataService.getCountries().subscribe((response) => {
-      this.countries = response.results!!;
+      this.countries = response.results;
     });
     if (localStorage.getItem('chosenCountry'))
       this.chosenCountry = JSON.parse(
@@ -56,16 +56,13 @@ export class MainComponent implements OnInit {
   searchMovies() {
     if (!this.userInput) return;
     this.searching = true;
-    this.dataService
-      .search(this.userInput, this.chosenCountry)
-      .subscribe((response) => {
-        this.searchResults = response.results!!.filter(
-          (result) =>
-            result.media_type === 'movie' || result.media_type === 'tv'
-        );
-        const queryParams = { search: this.userInput };
-        this.router.navigate([], { queryParams, queryParamsHandling: 'merge' });
-      });
+    this.dataService.search(this.userInput).subscribe((response) => {
+      this.searchResults = response.results!.filter(
+        (result) => result.media_type === 'movie' || result.media_type === 'tv'
+      );
+      const queryParams = { search: this.userInput };
+      this.router.navigate([], { queryParams, queryParamsHandling: 'merge' });
+    });
   }
   clearSearch() {
     this.searching = false;
@@ -87,7 +84,7 @@ export class MainComponent implements OnInit {
 
   formatDate(date: string) {
     if (!date) return 'Date of release not found';
-    let arr = date.split('-');
+    const arr = date.split('-');
     return arr[2] + '.' + arr[1] + '.' + arr[0];
   }
 

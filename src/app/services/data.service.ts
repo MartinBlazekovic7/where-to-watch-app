@@ -1,9 +1,8 @@
 import { ProviderResponse } from './../models/provider.model';
 import { SearchResponse, SearchResults } from './../models/search.model';
-import { Country, CountryResponse } from './../models/country.model';
+import { CountryResponse } from './../models/country.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Item } from '../models/item.model';
 import { map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -20,7 +19,7 @@ export class DataService {
     );
   }
 
-  search(query: string, country: Country): Observable<SearchResponse> {
+  search(query: string): Observable<SearchResponse> {
     return this.http.get<SearchResponse>(
       this.API_URL +
         'search/multi' +
@@ -46,6 +45,7 @@ export class DataService {
       )
       .pipe(
         map((res) => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           const provider = { ...res.results[`${locale.toUpperCase()}`] };
           return provider;
