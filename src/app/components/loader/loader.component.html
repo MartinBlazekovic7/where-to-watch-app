@@ -1,0 +1,11 @@
+<div
+  [ngClass]="{ isActive: (loaderService.active$ | async)?.active }"
+  class="loader-content"
+  [style.backgroundColor]="overlayColor"
+>
+  <div class="input-loader">
+    <ng-content></ng-content>
+  </div>
+  <div class="default-loader"></div>
+  <p *ngIf="loaderText" [style.color]="loaderTextColor">{{ loaderText }}</p>
+</div>

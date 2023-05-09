@@ -9,9 +9,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './pipes/search.pipe';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, SearchPipe],
+  declarations: [AppComponent, MainComponent, SearchPipe, LoaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

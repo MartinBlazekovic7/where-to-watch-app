@@ -34,7 +34,7 @@
         <p (click)="clearSearch()">Clear</p>
       </div>
       <div *ngIf="!searchResults!.length">
-        <i>No results for your search term.</i>
+        <i id="no-results">No results for your search term.</i>
       </div>
       <div
         *ngFor="let item of searchResults"
@@ -77,7 +77,7 @@
 
   <i *ngIf="!searchResults!.length" class="site-description"
     >This website is made as an extension to
-    <a href="https://www.cinemaholic.vercel.app" target="_blank">Cinemaholic</a>
+    <a href="https://cinemaholic.vercel.app" target="_blank">Cinemaholic</a>
     movie and TV database. Check it out if you want to learn about movies and TV
     shows.
   </i>
@@ -205,3 +205,9 @@
     </div>
   </div>
 </div>
+
+<app-loader
+  [overlayColor]="'#1f2326'"
+  [loaderText]="'Please wait...'"
+  [loaderTextColor]="'#fd515a'"
+></app-loader>
