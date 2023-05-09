@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './pipes/search.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, MainComponent, SearchPipe, LoaderComponent],
@@ -20,6 +21,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

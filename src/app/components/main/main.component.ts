@@ -6,6 +6,7 @@ import { ProviderList } from 'src/app/models/provider.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fadeIn, inAnimation } from 'src/app/animations/animations';
 import { LoaderService } from 'src/app/services/loader.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -17,7 +18,8 @@ export class MainComponent implements OnInit {
     private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private toastr: ToastrService
   ) {}
 
   countries: Country[] | undefined = [];
@@ -45,6 +47,9 @@ export class MainComponent implements OnInit {
     else {
       this.chosenCountry = { iso_3166_1: 'HR', english_name: 'CROATIA' };
       localStorage.setItem('chosenCountry', JSON.stringify(this.chosenCountry));
+      this.showToast(
+        'Your region has been set to Croatia, change it by clicking on the settings icon!'
+      );
     }
     this.route.queryParams.subscribe((params) => {
       const searchParam = params['search'];
@@ -99,5 +104,12 @@ export class MainComponent implements OnInit {
     this.chosenCountry = country;
     this.searchTerm = '';
     localStorage.setItem('chosenCountry', JSON.stringify(this.chosenCountry));
+    this.showToast(
+      'Successfully changed region to ' + this.chosenCountry.english_name
+    );
+  }
+
+  showToast(message: string) {
+    this.toastr.info(message);
   }
 }
